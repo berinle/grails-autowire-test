@@ -13,10 +13,13 @@ import grails.test.mixin.services.ServiceUnitTestMixin
 @TestMixin(ServiceUnitTestMixin)
 class ShopServiceTests {
 
-    void testSomething() {
-    	defineBeans{ payment(com.jrock.PaymentImpl, key:'testKey') }
+	@Before
+	void setUp(){
+		defineBeans{ payment(com.jrock.PaymentImpl, key:'testKey') }
 		testFor(ShopService)
+	}
 
+    void testSomething() {
     	assert service.payment != null 
     	assert service.payment.key == 'testKey'
     	service.serviceMethod()
